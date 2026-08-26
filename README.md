@@ -93,14 +93,14 @@ python run.py
 Verás algo como:
 
 ```
- * Running on http://127.0.0.1:5000
+ * Running on http://127.0.0.1:5001
 ```
 
 La primera vez que corres el proyecto, se crea automáticamente la tabla
 `usuarios` en tu base de datos de Neon (no necesitas escribir SQL para
 eso — lo hace `db.create_all()` en `run.py`).
 
-Abre `http://127.0.0.1:5000/` en tu navegador: verás un mensaje con la
+Abre `http://127.0.0.1:5001/` en tu navegador: verás un mensaje con la
 lista de endpoints disponibles.
 
 ## 6. Probar los endpoints
@@ -110,31 +110,31 @@ Puedes usar `curl` desde la terminal, o herramientas como **Postman** o
 
 ### Crear un usuario
 ```bash
-curl -X POST http://127.0.0.1:5000/usuarios \
+curl -X POST http://127.0.0.1:5001/usuarios \
   -H "Content-Type: application/json" \
   -d '{"nombre": "Ana Torres", "email": "ana@example.com", "edad": 25}'
 ```
 
 ### Listar todos los usuarios
 ```bash
-curl http://127.0.0.1:5000/usuarios
+curl http://127.0.0.1:5001/usuarios
 ```
 
 ### Obtener un usuario por id
 ```bash
-curl http://127.0.0.1:5000/usuarios/1
+curl http://127.0.0.1:5001/usuarios/1
 ```
 
 ### Actualizar un usuario
 ```bash
-curl -X PUT http://127.0.0.1:5000/usuarios/1 \
+curl -X PUT http://127.0.0.1:5001/usuarios/1 \
   -H "Content-Type: application/json" \
   -d '{"edad": 26}'
 ```
 
 ### Eliminar un usuario
 ```bash
-curl -X DELETE http://127.0.0.1:5000/usuarios/1
+curl -X DELETE http://127.0.0.1:5001/usuarios/1
 ```
 
 ## 7. Tabla de endpoints
