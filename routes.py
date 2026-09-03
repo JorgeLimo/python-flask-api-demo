@@ -71,3 +71,55 @@ def eliminar_usuario(usuario_id):
     db.session.commit()
 
     return jsonify({"mensaje": "Usuario eliminado correctamente."})
+
+@app.route("/evaluar-requerimiento", methods=["POST"])
+def evaluar_requerimiento_ong():
+
+    try:
+
+        data = request.get_json()
+
+        if not data:
+            return jsonify({
+                "success": False,
+                "message": "Debe enviar un JSON"
+            }), 400
+
+
+        requerimiento = data.get("requerimiento")
+
+
+        if not requerimiento:
+            return jsonify({
+                "success": False,
+                "message": "El campo requerimiento es obligatorio"
+            }), 400
+
+
+        resultado = evaluar_requerimiento(
+            requerimiento=requerimiento
+        )
+
+
+        return jsonify({
+            "success": True,
+            "data": resultado
+        }), 200
+
+
+    except ValueError as e:
+
+        return jsonify({
+            "success": False,
+            "message": str(e)
+        }), 400
+
+
+    except Exception as e:
+
+        print(e)
+
+        return jsonify({
+            "success": False,
+            "message": "Error procesando el requerimiento"
+        }), 500
