@@ -9,6 +9,11 @@ client = genai.Client(
     api_key=os.getenv("GEMINI_API_KEY")
 )
 
+GEMINI_MODEL = os.getenv(
+    "GEMINI_MODEL",
+    "gemini-3.5-flash-lite"
+)
+
 
 CATEGORIAS_DISPONIBLES = [
     {
@@ -69,7 +74,7 @@ INSTRUCCIONES:
 """
 
     response = client.models.generate_content(
-        model="gemini-2.5-flash-lite",
+        model=GEMINI_MODEL,
         contents=prompt,
         config=types.GenerateContentConfig(
             response_mime_type="application/json",
