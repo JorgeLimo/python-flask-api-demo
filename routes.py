@@ -3,6 +3,7 @@
 # ============================================================================
 from flask import Blueprint, request, jsonify
 from models import db, Usuario
+from openai_service import evaluar_requerimiento
 
 # Un Blueprint agrupa un conjunto de rutas relacionadas (aquí, todas las
 # de usuarios) para luego "engancharlas" a la app principal en run.py.
