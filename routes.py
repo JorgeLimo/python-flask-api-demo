@@ -72,7 +72,7 @@ def eliminar_usuario(usuario_id):
 
     return jsonify({"mensaje": "Usuario eliminado correctamente."})
 
-@app.route("/evaluar-requerimiento", methods=["POST"])
+@usuarios_bp.route("/evaluar-requerimiento", methods=["POST"])
 def evaluar_requerimiento_ong():
 
     try:
