@@ -3,7 +3,7 @@
 # ============================================================================
 from flask import Blueprint, request, jsonify
 from models import db, Usuario
-from openai_service import evaluar_requerimiento
+from gemini_service import evaluar_requerimiento
 
 # Un Blueprint agrupa un conjunto de rutas relacionadas (aquí, todas las
 # de usuarios) para luego "engancharlas" a la app principal en run.py.
@@ -75,7 +75,9 @@ def eliminar_usuario(usuario_id):
 
 @usuarios_bp.route("/evaluar-requerimiento", methods=["POST"])
 def evaluar_requerimiento_ong():
+
     try:
+
         data = request.get_json()
 
         if not data:
@@ -102,12 +104,14 @@ def evaluar_requerimiento_ong():
         }), 200
 
     except ValueError as e:
+
         return jsonify({
             "success": False,
             "message": str(e)
         }), 400
 
     except Exception as e:
+
         print("ERROR EN /evaluar-requerimiento:", repr(e))
 
         return jsonify({
