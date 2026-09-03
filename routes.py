@@ -74,9 +74,7 @@ def eliminar_usuario(usuario_id):
 
 @usuarios_bp.route("/evaluar-requerimiento", methods=["POST"])
 def evaluar_requerimiento_ong():
-
     try:
-
         data = request.get_json()
 
         if not data:
@@ -85,9 +83,7 @@ def evaluar_requerimiento_ong():
                 "message": "Debe enviar un JSON"
             }), 400
 
-
         requerimiento = data.get("requerimiento")
-
 
         if not requerimiento:
             return jsonify({
@@ -95,31 +91,25 @@ def evaluar_requerimiento_ong():
                 "message": "El campo requerimiento es obligatorio"
             }), 400
 
-
         resultado = evaluar_requerimiento(
             requerimiento=requerimiento
         )
-
 
         return jsonify({
             "success": True,
             "data": resultado
         }), 200
 
-
     except ValueError as e:
-
         return jsonify({
             "success": False,
             "message": str(e)
         }), 400
 
-
     except Exception as e:
-
-        print(e)
+        print("ERROR EN /evaluar-requerimiento:", repr(e))
 
         return jsonify({
             "success": False,
-            "message": "Error procesando el requerimiento"
+            "message": str(e)
         }), 500
